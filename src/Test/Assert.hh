@@ -20,8 +20,8 @@
 namespace Test_Assert {
   using namespace PureScript;
 
-  inline auto assert_prime_(string message) {
-    return [=](bool success) {
+  inline auto assert_prime_(const string& message) {
+    return [=](const bool success) {
       return [=]() {
         if (!success) throw runtime_error(message);
       };
