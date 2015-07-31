@@ -24,6 +24,7 @@ namespace Test_Assert {
     return [=](const bool success) {
       return [=]() {
         if (!success) throw runtime_error(message);
+	return Prelude::unit;
       };
     };
   }
