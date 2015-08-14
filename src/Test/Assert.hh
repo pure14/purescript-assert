@@ -15,7 +15,7 @@
 #ifndef Test_Assert_FFI_HH
 #define Test_Assert_FFI_HH
 
-#include "Purescript/Purescript.hh"
+#include "PureScript/PureScript.hh"
 
 namespace Test_Assert {
   using namespace PureScript;
