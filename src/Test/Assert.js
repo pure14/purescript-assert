@@ -3,6 +3,11 @@
 
 // module Test.Assert
 
+// | Throws a runtime exception with the specified message when the boolean
+// | value is false.
+//
+// foreign import assert' :: forall e. String -> Boolean -> Eff (assert :: ASSERT | e) Unit
+//
 exports["assert'"] = function (message) {
   return function (success) {
     return function () {
