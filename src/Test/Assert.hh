@@ -25,10 +25,10 @@ namespace Test_Assert {
   //
   // foreign import assert' :: forall e. String -> Boolean -> Eff (assert :: ASSERT | e) Unit
   //
-  inline auto assert_prime_(const string& message) {
-    return [=](const bool success) {
-      return [=]() {
-        if (!success) throw runtime_error(message);
+  inline auto assert_prime_(const any& message) -> any {
+    return [=](const any& success) -> any {
+      return [=]() -> any {
+        if (!success.cast<bool>()) throw runtime_error(message);
         return Prelude::unit;
       };
     };
@@ -36,9 +36,8 @@ namespace Test_Assert {
 
   //  foreign import checkThrows :: forall e a. (Unit -> a) -> Eff (assert :: ASSERT | e) Boolean
   //
-  template <typename A>
-  inline auto checkThrows(const fn<Prelude::Unit,A>& f) {
-    return [=]() {
+  inline auto checkThrows(const any& f) -> any {
+    return [=]() -> any {
       try {
         f(Prelude::unit);
         return false;
@@ -47,6 +46,7 @@ namespace Test_Assert {
       } catch (std::exception&) {
         throw runtime_error("Threw something other than an Error");
       }
+      return Prelude::unit;
     };
   }
 
